@@ -5,6 +5,20 @@
 Inspired by the [Craft CMS image transform API](https://craftcms.com/docs/3.x/image-transforms.html).  
 This plugin gives you the full power of the [sharp](https://sharp.pixelplumbing.com/) library in your [11ty](https://www.11ty.dev/) templates.
 
+## Usage
+
+```js
+// .eleventy.js
+const sharpPlugin = require('eleventy-plugin-sharp');
+
+module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(sharpPlugin({
+    outputDir: 'public/images'
+  }));
+};
+```
+
+
 ```njk
 {% set image = "/images/zen-pond.jpg" | sharp %}
 
