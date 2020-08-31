@@ -59,19 +59,26 @@ function createSharpPlugin(options) {
     });
 
     eleventyConfig.addAsyncShortcode('getWidth', async function (instance) {
-      const metadata = await getMetadata(instance.fileOut);
+      const metadata = await getMetadata(instance);
       return `${metadata.width}`;
     });
 
     eleventyConfig.addAsyncShortcode('getHeight', async function (instance) {
-      const metadata = await getMetadata(instance.fileOut);
+      const metadata = await getMetadata(instance);
       return `${metadata.height}`;
     });
+
+    eleventyConfig.addAsyncShortcode('getMetadata', getMetadata);
 
     function getMetadata(instance) {
       if (typeof instance === 'string') instance = sharp(instance);
       return instance.metadata();
     }
+
+    eleventyConfig.addAsyncShortcode('getStats', function (instance) {
+      if (typeof instance === 'string') instance = sharp(instance);
+      return instance.stats();
+    });
   };
 }
 
