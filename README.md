@@ -13,6 +13,7 @@ const sharpPlugin = require('eleventy-plugin-sharp');
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(sharpPlugin({
+    urlPath: '/images',
     outputDir: 'public/images'
   }));
 };

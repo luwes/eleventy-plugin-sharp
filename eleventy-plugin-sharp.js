@@ -16,6 +16,7 @@ const forwardMethods = Object.keys(sharp.prototype).filter((method) => {
 });
 
 const globalOptions = {
+  urlPath: '/images',
   outputDir: 'public/images',
 };
 
@@ -54,7 +55,7 @@ function createSharpPlugin(options) {
 
       debug('Writing %o', instance.fileOut);
       await instance.toFile(instance.fileOut);
-      return instance.fileOut;
+      return path.join(options.urlPath, path.basename(instance.fileOut));
     });
 
     eleventyConfig.addAsyncShortcode('getWidth', async function (instance) {
