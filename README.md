@@ -42,19 +42,22 @@ In addition shortcodes are used to execute the async functions of Sharp, somethi
 The `sharp` filter is optional if the input file is followed by any Sharp transform.
 
 ```njk
-{% set image = "/images/zen-pond.jpg" | sharp %}
+{% set image = "src/images/zen-pond.jpg" | sharp %}
 
 <picture>
-    <source srcset="{% getUrl image | resize({ width: 1440, height: 460 }) %} 1x, {% getUrl image | resize({ width: 2560, height: 800 }) %} 2x" media="(min-width: 640px)">
-    <img class="articleHero-image" srcset="{% getUrl image | resize({ width: 640, height: 320 }) %} 1x, {% getUrl image | resize({ width: 1280, height: 640 }) %} 2x" alt="{{ image.title }}">
+  <source srcset="{% getUrl image | resize({ width: 1440, height: 460 }) | webp %} 1x, {% getUrl image | resize({ width: 2560, height: 800 }) | webp %} 2x" media="(min-width: 640px)">
+  <source srcset="{% getUrl image | resize({ width: 640, height: 320 }) | webp %} 1x, {% getUrl image | resize({ width: 1280, height: 640 }) | webp %} 2x">
+  <source srcset="{% getUrl image | resize({ width: 1440, height: 460 }) %} 1x, {% getUrl image | resize({ width: 2560, height: 800 }) %} 2x" media="(min-width: 640px)">
+  <img class="articleHero-image" srcset="{% getUrl image | resize({ width: 640, height: 320 }) %} 1x, {% getUrl image | resize({ width: 1280, height: 640 }) %} 2x" alt="{{ image.title }}">
 </picture>
 ```
 
 
-## Get the dimensions of a saved image
+## Get the dimensions of a saved image w/ custom output filepath
 
 ```njk
-{% set bannerImage = featuredImage.url | webp | resize(1440, 460) %}
+{% set bannerImage = "src/images/zen-pond.jpg" | resize(1440, 460) | toFile("public/images/custom-name.webp") %}
+
 {% getUrl bannerImage %}
 {% getWidth bannerImage.fileOut %}
 {% getHeight bannerImage.fileOut %}
