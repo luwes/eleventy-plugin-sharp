@@ -55,7 +55,7 @@ function createSharpPlugin(options) {
 
       debug('Writing %o', instance.fileOut);
       await instance.toFile(instance.fileOut);
-      return path.join(options.urlPath, path.basename(instance.fileOut));
+      return path.normalize(path.join(options.urlPath, path.basename(instance.fileOut))).replace(/\\/g, '/');
     });
 
     eleventyConfig.addAsyncShortcode('getWidth', async function (instance) {
