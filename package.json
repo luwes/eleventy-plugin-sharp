@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "keywords": [
     "eleventy",
+    "eleventy-plugin",
     "11ty",
     "sharp",
     "image",
