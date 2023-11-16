@@ -24,7 +24,7 @@
   "main": "eleventy-plugin-sharp.js",
   "dependencies": {
     "debug": "^4.1.1",
-    "sharp": "^0.30.0"
+    "sharp": "^0.32.6"
   },
   "devDependencies": {
     "eslint": "^7.7.0",
